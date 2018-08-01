@@ -1,6 +1,7 @@
-from pytube import YouTube
+from pytube import *
 from bs4 import BeautifulSoup
 import requests
+import os
 
 file_name = ''
 
@@ -44,9 +45,11 @@ def main():
         for link in soup.find_all('div',class_="yt-lockup-content"):
             download_link = link.find('a')['href']
             vetor.insert(count,('youtube.com'+download_link))
-            print(str(count)+"-"+'Nome: '+link.h3.a.text)
+            print(str(count)+" - "+'Nome: '+link.h3.a.text)
             print('Link: youtube.com'+download_link+'\n')
             count +=1
         escolha = int(input('Escolha a opção para fazer download: '))
-        download_yt(vetor[escolha])
+        escolha = vetor[escolha]
+        download_yt(escolha)
+    os.system('pause')
 main()
