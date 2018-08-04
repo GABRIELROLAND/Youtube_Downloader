@@ -9,14 +9,14 @@ def download_yt(url):
 
     yt= YouTube(url)
     #print(yt.streams.filter(only_audio=False).all())
-    choice = input('Digite a para áudio e v para vídeo: ')
+    choice = input('a - Audio (160kbps) // v - Video (1080p): ')
     if choice == 'a':
-        print('Baixando áudio de '+url)
+        print('Downloading audio from '+url)
         yt.streams.get_by_itag(140).download()
     else:
-        print('Baixando video de '+url)
+        print('Downloading video from '+url)
         yt.streams.get_by_itag(137).download()
-    print('~ Download Completo ~')
+    print('~ Download Completed ~')
 
 # def get_extension(url):
 #     if 'youtube' in url:
@@ -33,7 +33,7 @@ def download_yt(url):
 #     return file_name
 
 def main():
-    musica = input('Digite a música ou link a ser baixado do Youtube: ')
+    musica = input('Name of the Music/Video(or link): ')
     if 'youtube.com' in musica:
         download_yt(musica)
     else:
@@ -48,8 +48,8 @@ def main():
             print(str(count)+" - "+'Nome: '+link.h3.a.text)
             print('Link: youtube.com'+download_link+'\n')
             count +=1
-        escolha = int(input('Escolha a opção para fazer download: '))
-        escolha = vetor[escolha]
-        download_yt(escolha)
+        opt = int(input('Choose one option to download(#): '))
+        opt = vetor[opt]
+        download_yt(opt)
     os.system('pause')
 main()
