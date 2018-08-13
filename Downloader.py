@@ -15,7 +15,6 @@ def mass_down():
     for i in range(0,len(Down_list)):
         down_fixed = Down_list[i].split('+')
         print('===  #'+str(i+1)+'  ===' )
-        print(down_fixed[0].replace('+',',').replace("'",''),down_fixed[1].replace('+',',').replace("'",''))
         download_yt((down_fixed[0].replace('+',',').replace("'",'')),(down_fixed[1].replace('+',',').replace("'",'')))
     test = input('\n'+'\n'+'Exit ? (y/n): ')
         
