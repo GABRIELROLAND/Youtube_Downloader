@@ -14,42 +14,43 @@ def mass_down():
     os.system('cls')
     for i in range(0,len(Down_list)):
         down_fixed = Down_list[i].split('+')
-        print('===  #'+str(i+1)+' ===' )
-        download_yt(down_fixed[0].replace('+',',').replace("'",''),down_fixed[1].replace('+',',').replace("'",''))
-        test = input('\n'+'\n'+'Exit ? (y/n): ')
+        print('===  #'+str(i+1)+'  ===' )
+        print(down_fixed[0].replace('+',',').replace("'",''),down_fixed[1].replace('+',',').replace("'",''))
+        download_yt((down_fixed[0].replace('+',',').replace("'",'')),(down_fixed[1].replace('+',',').replace("'",''))
+    test = input('\n'+'\n'+'Exit ? (y/n): ')
         
 
 def make_list(url_item):
     choice = input('a - Audio (160kbps) // v - Video (1080p): ')
     Down_list.append(url_item+'+'+choice)
-    print(Down_list)
     check = input('Do you want to add more items? (y/n): ')
+    os.system('cls')
     if (check == 'n'):
+        os.system('cls')
         mass_down()
         
 def download_yt(url,choice):
     global test
-    yt= YouTube(url)
-    #print(yt.streams.filter(only_audio=False).all())
-    #choice = input('a - Audio (160kbps) // v - Video (1080p): ')
+    yt = YouTube(url)
     if choice == 'a':
         print('- Downloading audio from '+url)
         yt.streams.get_by_itag(140).download()
     else:
         print('- Downloading video from '+url)
         yt.streams.get_by_itag(137).download()
+    
     print('\n'+'~ Download Completed ~'+'\n')
     
 
 def main():
     os.system('cls')
     while(test != 'y'):
-        musica = input('Name of the Music/Video(or link): ')
-        if 'youtube.com' in musica:
-            download_yt(musica)
+        usr_qry = input('Name of the Music/Video(or link): ')
+        if 'youtube.com' in usr_qry:
+            make_list(usr_qry)
         else:
-            musica = musica.replace(" ","+")
-            source = requests.get('https://www.youtube.com/results?search_query='+musica).text
+            usr_qry = usr_qry.replace(" ","+")
+            source = requests.get('https://www.youtube.com/results?search_query='+usr_qry).text
             soup = BeautifulSoup(source,"html5lib")
             count=0
             vetor=[]
@@ -62,7 +63,6 @@ def main():
             opt = int(input('Choose one option to download(#): '))
             opt = vetor[opt]
             make_list(opt)
-            #download_yt(opt)
                 
     os.system('pause')
 main()
