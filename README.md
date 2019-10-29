@@ -1,5 +1,5 @@
 # Youtube_Downloader
-Python script to download video or audio from youtube videos.
+Python script to download video or audio from youtube videos straight from the terminal
 
 ## Requirements 
 * beautifulsoup4
